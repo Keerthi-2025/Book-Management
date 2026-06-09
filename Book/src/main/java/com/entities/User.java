@@ -1,5 +1,6 @@
 package com.entities;
 
+import com.Role;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -25,11 +26,12 @@ public class User {
     @Column(nullable = false)
     private String password;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String email;
 
     @Column
-    private String role;
+    @Enumerated(EnumType.STRING)
+    private Role role;
 
 
 

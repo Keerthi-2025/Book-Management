@@ -1,6 +1,7 @@
 package com.entities;
 
 
+import com.Genre;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -12,6 +13,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@Entity
 
 public class Book {
 
@@ -25,8 +27,9 @@ public class Book {
     @Column
     private  String author;
 
-    @Column
-    private String genre;
+
+    @Enumerated(EnumType.STRING)
+    private Genre genre;
 
     @Column
     private String status;

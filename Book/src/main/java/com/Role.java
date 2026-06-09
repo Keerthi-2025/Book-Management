@@ -1,4 +1,4 @@
-package com.book.Book;
+package com;
 
 public enum Role {
     ADMIN,
