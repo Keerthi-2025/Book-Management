@@ -17,39 +17,36 @@ import java.util.UUID;
 public class UserController {
     private final UserService userService;
 
-    public  UserController(UserService userService){
+    public UserController(UserService userService) {
         this.userService = userService;
     }
 
     @PostMapping("/v1/createUser")
-    public ResponseEntity<String> createUser(@RequestBody CreateUserdto data){
+    public ResponseEntity<String> createUser(@RequestBody CreateUserdto data) {
         String message = userService.createUser(data.userName(), data.email(), data.password(), Role.USER);
         return ResponseEntity.status(201).body(message);
     }
 
     @GetMapping("/v1/getAllUsers")
-    ResponseEntity<List<User>> getAllUsers(){
-        return  ResponseEntity.status(200).body(userService.getAllUsers());
+    ResponseEntity<List<User>> getAllUsers() {
+        return ResponseEntity.status(200).body(userService.getAllUsers());
     }
 
     @GetMapping("/v1/getUserById")
-    ResponseEntity<User>getUserById(@RequestParam("user_Id") UUID user_Id){
-        return  ResponseEntity.status(200).body(userService.getUserById(user_Id));
+    ResponseEntity<User> getUserById(@RequestParam("user_Id") UUID user_Id) {
+        return ResponseEntity.status(200).body(userService.getUserById(user_Id));
     }
 
 
     @PostMapping("/v1/signup")
-    public  ResponseEntity<String>signup(@RequestBody CreateUserdto data){
+    public ResponseEntity<String> signup(@RequestBody CreateUserdto data) {
         String message = userService.createUser(data.userName(), data.email(), data.password(), Role.USER);
         return ResponseEntity.status(201).body(message);
     }
 
     @PostMapping("/v1/admin/signup")
-    public ResponseEntity<String>adminsignup(@RequestBody CreateUserdto data){
-        return  ResponseEntity.status(201).body(userService.adminSignup(data));
+    public ResponseEntity<String> adminsignup(@RequestBody CreateUserdto data) {
+        return ResponseEntity.status(201).body(userService.adminSignup(data));
     }
-
-
-
 
 }
