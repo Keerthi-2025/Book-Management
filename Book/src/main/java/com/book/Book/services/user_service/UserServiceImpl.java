@@ -1,8 +1,10 @@
 package com.book.Book.services.user_service;
 
 
+import com.book.Book.Dto.Request.CreateLoginDto;
 import com.book.Book.Dto.Request.CreateUserdto;
 import com.book.Book.Dto.Request.SignupDto;
+import com.book.Book.Dto.Response.CreateLoginResponseDto;
 import com.book.Book.Role;
 import com.book.Book.entities.User;
 import com.book.Book.exceptions.ApiRequestException;
@@ -70,8 +72,21 @@ public class UserServiceImpl implements UserService{
 
         User admin = userMapper.touser(dto.userName(), dto.email(), dto.password(), Role.ADMIN);
         userRepository.save(admin);
+
         return "Admin registered successfully";
     }
+
+    @Override
+    public CreateLoginResponseDto login(CreateLoginDto dto) {
+        User user = userRepository.findByEmail(dto.email()).orElseThrow(()-> new ApiRequestException("User not found"));
+
+        if(!user.getPassword().equals(dto.password())){
+            throw new ApiRequestException("Invalid Password");
+        }
+        return new CreateLoginResponseDto("Login successfull", user.getUserName(), user.getEmail(), user.getRole());
+    }
+
+
 
 
 }

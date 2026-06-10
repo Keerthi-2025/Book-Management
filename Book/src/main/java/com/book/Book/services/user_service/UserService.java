@@ -1,7 +1,9 @@
 package com.book.Book.services.user_service;
 
+import com.book.Book.Dto.Request.CreateLoginDto;
 import com.book.Book.Dto.Request.CreateUserdto;
 import com.book.Book.Dto.Request.SignupDto;
+import com.book.Book.Dto.Response.CreateLoginResponseDto;
 import com.book.Book.Role;
 import com.book.Book.entities.User;
 
@@ -19,5 +21,7 @@ public interface UserService {
     User getUserById( UUID user_Id);
 
     String adminSignup(CreateUserdto dto);
+
+CreateLoginResponseDto login (CreateLoginDto dto);
 
 }
