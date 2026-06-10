@@ -2,6 +2,7 @@ package com.book.Book.controllers;
 
 
 import com.book.Book.Dto.CreateUserdto;
+import com.book.Book.Role;
 import com.book.Book.entities.User;
 import com.book.Book.services.user_service.UserService;
 import org.springframework.http.ResponseEntity;
@@ -22,7 +23,7 @@ public class UserController {
 
     @PostMapping("/v1/createUser")
     public ResponseEntity<String> createUser(@RequestBody CreateUserdto data){
-        String message = userService.createUser(data.userName(), data.email(), data.password(), data.role());
+        String message = userService.createUser(data.userName(), data.email(), data.password(), Role.USER);
         return ResponseEntity.status(201).body(message);
     }
 
@@ -35,5 +36,14 @@ public class UserController {
     ResponseEntity<User>getUserById(@RequestParam("user_Id") UUID user_Id){
         return  ResponseEntity.status(200).body(userService.getUserById(user_Id));
     }
+
+
+    @PostMapping("/v1/signup")
+    public  ResponseEntity<String>signup(@RequestBody CreateUserdto data){
+        String message = userService.createUser(data.userName(), data.email(), data.password(), Role.USER);
+        return ResponseEntity.status(201).body(message);
+    }
+
+
 
 }
