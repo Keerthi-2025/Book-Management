@@ -1,7 +1,9 @@
 package com.book.Book.controllers;
 
 
+import com.book.Book.Dto.Request.CreateLoginDto;
 import com.book.Book.Dto.Request.CreateUserdto;
+import com.book.Book.Dto.Response.CreateLoginResponseDto;
 import com.book.Book.Role;
 import com.book.Book.entities.User;
 import com.book.Book.services.user_service.UserService;
@@ -47,6 +49,11 @@ public class UserController {
     @PostMapping("/v1/admin/signup")
     public ResponseEntity<String> adminsignup(@RequestBody CreateUserdto data) {
         return ResponseEntity.status(201).body(userService.adminSignup(data));
+    }
+
+    @PostMapping("/v1/login")
+    public ResponseEntity<CreateLoginResponseDto> login(@RequestBody CreateLoginDto dto){
+        return ResponseEntity.ok(userService.login(dto));
     }
 
 
