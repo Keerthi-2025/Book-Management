@@ -4,6 +4,7 @@ import com.book.Book.Role;
 import com.book.Book.entities.User;
 
 import java.util.List;
+import java.util.UUID;
 
 public interface UserService {
 
@@ -13,5 +14,5 @@ public interface UserService {
 
     List<User> getAllUsers();
 
-    User getUserById(Integer user_Id);
+    User getUserById( UUID user_Id);
 }

@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/web/api/User")
@@ -30,8 +31,8 @@ public class UserController {
         return  ResponseEntity.status(200).body(userService.getAllUsers());
     }
 
-    @GetMapping("/v1/user_Id")
-    ResponseEntity<User>getUserId(@RequestParam("user_Id") Integer user_Id){
+    @GetMapping("/v1/getUserById")
+    ResponseEntity<User>getUserById(@RequestParam("user_Id") UUID user_Id){
         return  ResponseEntity.status(200).body(userService.getUserById(user_Id));
     }
 

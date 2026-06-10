@@ -10,6 +10,7 @@ import com.book.Book.utils.UUIDUtil;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 
@@ -45,7 +46,7 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public User getUserById(Integer user_Id) {
-        return userRepository.findById(String.valueOf(user_Id)).orElseThrow(()-> new ApiRequestException("User ID not found"));
+    public User getUserById( UUID user_Id) {
+        return userRepository.findById((user_Id)).orElseThrow(()-> new ApiRequestException("User ID not found"));
     }
 }
