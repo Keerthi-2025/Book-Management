@@ -49,4 +49,6 @@ public class UserController {
         return ResponseEntity.status(201).body(userService.adminSignup(data));
     }
 
+
+
 }
