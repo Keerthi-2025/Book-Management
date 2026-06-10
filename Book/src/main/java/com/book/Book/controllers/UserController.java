@@ -44,6 +44,11 @@ public class UserController {
         return ResponseEntity.status(201).body(message);
     }
 
+    @PostMapping("/v1/admin/signup")
+    public ResponseEntity<String>adminsignup(@RequestBody CreateUserdto data){
+        return  ResponseEntity.status(201).body(userService.adminSignup(data));
+    }
+
 
 
 
