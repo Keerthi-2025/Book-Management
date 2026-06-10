@@ -1,6 +1,7 @@
 package com.book.Book.entities;
 
 
+import com.book.Book.BookStatus;
 import com.book.Book.Genre;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -31,8 +32,8 @@ public class Book {
     @Enumerated(EnumType.STRING)
     private Genre genre;
 
-    @Column
-    private String status;
+    @Enumerated(EnumType.STRING)
+    private BookStatus status;
 
     @Column
     private  String imageUrl;
