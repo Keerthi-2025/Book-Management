@@ -1,6 +1,7 @@
 package com.book.Book.services.user_service;
 
 
+import com.book.Book.Dto.CreateUserdto;
 import com.book.Book.Dto.SignupDto;
 import com.book.Book.Role;
 import com.book.Book.entities.User;
@@ -59,6 +60,17 @@ public class UserServiceImpl implements UserService{
     @Override
     public User getUserById( UUID user_Id) {
         return userRepository.findById((user_Id)).orElseThrow(()-> new ApiRequestException("User ID not found"));
+    }
+
+    @Override
+    public String adminSignup(CreateUserdto dto) {
+        if(userRepository.findByEmail(dto.email()).isPresent()){
+            throw  new RuntimeException("Email already exists");
+        }
+
+        User admin = userMapper.touser(dto.userName(), dto.email(), dto.password(), Role.ADMIN);
+        userRepository.save(admin);
+        return "Admin registered successfully";
     }
 
 
