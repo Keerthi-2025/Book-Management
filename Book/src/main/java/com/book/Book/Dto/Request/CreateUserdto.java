@@ -1,7 +1,5 @@
-package com.book.Book.Dto;
+package com.book.Book.Dto.Request;
 
-
-import com.book.Book.Role;
 
 public record CreateUserdto(String userName, String password, String email) {
 }

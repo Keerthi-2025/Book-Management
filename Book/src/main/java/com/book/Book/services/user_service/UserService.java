@@ -1,7 +1,7 @@
 package com.book.Book.services.user_service;
 
-import com.book.Book.Dto.CreateUserdto;
-import com.book.Book.Dto.SignupDto;
+import com.book.Book.Dto.Request.CreateUserdto;
+import com.book.Book.Dto.Request.SignupDto;
 import com.book.Book.Role;
 import com.book.Book.entities.User;
 
