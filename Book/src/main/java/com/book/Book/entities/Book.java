@@ -1,7 +1,7 @@
-package com.entities;
+package com.book.Book.entities;
 
 
-import com.Genre;
+import com.book.Book.Genre;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

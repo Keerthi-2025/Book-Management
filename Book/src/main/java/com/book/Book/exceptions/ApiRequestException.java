@@ -1,4 +1,4 @@
-package com.exceptions;
+package com.book.Book.exceptions;
 
 public class ApiRequestException extends RuntimeException {
 

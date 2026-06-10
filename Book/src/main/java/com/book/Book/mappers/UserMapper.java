@@ -1,17 +1,18 @@
-package com.mappers;
+package com.book.Book.mappers;
 
-import com.entities.User;
+import com.book.Book.Role;
+import com.book.Book.entities.User;
 import org.springframework.stereotype.Component;
 
 @Component
 
 public class UserMapper {
-    public User touser(Integer user_Id, String userName, String email, String password){
+    public User touser( String userName, String email, String password, Role role){
         return User.builder()
-                .user_Id(user_Id)
                 .userName(userName)
                 .email(email)
                 .password(password)
+                .role(role)
                 .build();
     }
 }

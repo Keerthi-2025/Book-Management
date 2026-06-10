@@ -1,16 +1,16 @@
-package com.controllers;
+package com.book.Book.controllers;
 
 
-import com.Dto.CreateUserdto;
-import com.entities.User;
-import com.services.user_service.UserService;
+import com.book.Book.Dto.CreateUserdto;
+import com.book.Book.entities.User;
+import com.book.Book.services.user_service.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/wev/api/User")
+@RequestMapping("/web/api/User")
 
 public class UserController {
     private final UserService userService;
@@ -21,7 +21,7 @@ public class UserController {
 
     @PostMapping("/v1/createUser")
     public ResponseEntity<String> createUser(@RequestBody CreateUserdto data){
-        String message = userService.createUser(Integer.valueOf(data.user_Id()), data.userName(), data.email(), data.password());
+        String message = userService.createUser(data.userName(), data.email(), data.password(), data.role());
         return ResponseEntity.status(201).body(message);
     }
 
@@ -32,7 +32,7 @@ public class UserController {
 
     @GetMapping("/v1/user_Id")
     ResponseEntity<User>getUserId(@RequestParam("user_Id") Integer user_Id){
-        return  ResponseEntity.status(200).body(userService.GetUserById(user_Id));
+        return  ResponseEntity.status(200).body(userService.getUserById(user_Id));
     }
 
 }

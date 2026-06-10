@@ -1,11 +1,12 @@
-package com.services.user_service;
+package com.book.Book.services.user_service;
 
 
-import com.entities.User;
-import com.exceptions.ApiRequestException;
-import com.mappers.UserMapper;
-import com.repositories.UserRepository;
-import com.utils.UUIDUtil;
+import com.book.Book.Role;
+import com.book.Book.entities.User;
+import com.book.Book.exceptions.ApiRequestException;
+import com.book.Book.mappers.UserMapper;
+import com.book.Book.repositories.UserRepository;
+import com.book.Book.utils.UUIDUtil;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -23,14 +24,17 @@ public class UserServiceImpl implements UserService{
         this.uuidUtil = uuidUtil;
     }
 
+
     @Override
     public String signupUser(Integer user_Id, String userName, String email, String password) {
         return "";
     }
 
+
     @Override
-    public String createUser(Integer user_Id, String userName, String email, String password) {
-        User user = userMapper.touser(user_Id, userName, email, password);
+    public String createUser( String userName, String email, String password, Role role) {
+        User user = userMapper.touser( userName, email, password ,role);
+//        user.setRole(Role.USER);
         userRepository.save(user);
         return "User created successfully";
     }

@@ -1,11 +1,13 @@
-package com.entities;
+package com.book.Book.entities;
 
-import com.Role;
+import com.book.Book.Role;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.UUID;
 
 @Entity
 @Table(name="users")
@@ -17,8 +19,8 @@ import lombok.NoArgsConstructor;
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer user_Id;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID user_Id;
 
     @Column(nullable = false)
     private  String userName;
