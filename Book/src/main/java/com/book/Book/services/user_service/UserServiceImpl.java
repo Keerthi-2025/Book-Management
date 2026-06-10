@@ -1,6 +1,7 @@
 package com.book.Book.services.user_service;
 
 
+import com.book.Book.Dto.SignupDto;
 import com.book.Book.Role;
 import com.book.Book.entities.User;
 import com.book.Book.exceptions.ApiRequestException;
@@ -26,13 +27,21 @@ public class UserServiceImpl implements UserService{
     }
 
 
-
-
-
     @Override
-    public String signup( String userName, String email, String password) {
-        return "";
+    public String signup(SignupDto dto) {
+
+        //check if email exists
+        if(userRepository.findByEmail(dto.email()).isPresent()){
+            throw  new RuntimeException("Email already exists");
+        }
+
+        User user = userMapper.touser(dto.userName(),dto.email(),dto.password(), Role.USER);
+        userRepository.save(user);
+        return "User registered successfully";
     }
+
+
+
 
     @Override
     public String createUser( String userName, String email, String password, Role role) {

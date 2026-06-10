@@ -1,5 +1,6 @@
 package com.book.Book.mappers;
 
+import com.book.Book.Dto.SignupDto;
 import com.book.Book.Role;
 import com.book.Book.entities.User;
 import org.springframework.stereotype.Component;
@@ -15,4 +16,6 @@ public class UserMapper {
                 .role(role)
                 .build();
     }
+
+
 }
