@@ -22,6 +22,8 @@ public interface UserService {
 
     String adminSignup(CreateUserdto dto);
 
-CreateLoginResponseDto login (CreateLoginDto dto);
+    CreateLoginResponseDto login (CreateLoginDto dto);
+
+    Long getUserCount();
 
 }

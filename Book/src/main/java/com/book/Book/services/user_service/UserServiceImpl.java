@@ -86,7 +86,10 @@ public class UserServiceImpl implements UserService{
         return new CreateLoginResponseDto("Login successfull", user.getUserName(), user.getEmail(), user.getRole());
     }
 
-
+    @Override
+    public Long getUserCount() {
+        return userRepository.count();
+    }
 
 
 }
