@@ -1,5 +1,6 @@
 package com.book.Book.repositories;
 
+import com.book.Book.Role;
 import com.book.Book.entities.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -14,4 +15,6 @@ public interface UserRepository extends JpaRepository<User, UUID> {
 
 
     Optional<User> findByEmail(String email);
+
+    Long countByRole(Role role);
 }

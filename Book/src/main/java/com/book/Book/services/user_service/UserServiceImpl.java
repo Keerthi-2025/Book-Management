@@ -88,7 +88,9 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public Long getUserCount() {
-        return userRepository.count();
+        return userRepository.countByRole(Role.USER);
+//        long count = userRepository.countByRole(Role.USER);
+//        return "Number of users = " + count;
     }
 
 

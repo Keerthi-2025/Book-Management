@@ -57,5 +57,11 @@ public class UserController {
     }
 
 
+    //admin gets user count
+    @GetMapping("/v1/usersCount")
+    public ResponseEntity<Long> getUsersCount(){
+        return ResponseEntity.ok(userService.getUserCount());
+    }
+
 
 }
