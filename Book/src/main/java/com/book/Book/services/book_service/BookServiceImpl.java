@@ -54,16 +54,16 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public List<Book> getAllBooks() {
-        return List.of();
+        return bookRepository.findAll();
     }
 
     @Override
     public Book getBookByTitle(String title) {
-        return null;
+        return bookRepository.findByTitle(title).orElseThrow(()-> new ApiRequestException("Book not found"));
     }
 
     @Override
     public List<Book> searchBooks(String title) {
-        return List.of();
+        return bookRepository.findByTitleContainingIgnoreCase(title);
     }
 }
