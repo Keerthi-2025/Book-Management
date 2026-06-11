@@ -47,7 +47,9 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public String deleteBook(UUID book_Id) {
-        return "";
+        Book book = bookRepository.findById(book_Id).orElseThrow(()-> new ApiRequestException("Book not found"));
+        bookRepository.delete(book);
+        return "Book deleted successfully";
     }
 
     @Override
