@@ -9,6 +9,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.UUID;
+
 @Data
 @Table(name = "books")
 @NoArgsConstructor
@@ -20,7 +22,7 @@ public class Book {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private  Integer book_Id;
+    private UUID book_Id;
 
     @Column
     private  String title;
