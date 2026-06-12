@@ -49,8 +49,17 @@ export default function Login() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-600">
-      <div className="w-[400px] bg-black shadow-lg rounded-xl p-8">
+
+    <div className=" min-h-screen flex items-center justify-center bg-cover bg-center"
+    style={{
+      backgroundImage: "url('/images/login.jpeg')",
+      backgroundSize: "100% 100%"
+      
+    }}>
+
+   
+    <div className=" flex items-center justify-center ml-100">
+      <div className="w-[390px] bg-black shadow-lg rounded-xl p-8">
         <h1 className="text-3xl font-bold mb-6 text-center">
           Login
         </h1>
@@ -80,7 +89,7 @@ export default function Login() {
 
           <button
             type="submit"
-            className="w-full bg-black text-white py-3 rounded hover:bg-gray-800"
+            className="w-full bg-amber-700 text-white py-3  rounded hover:bg-green-500"
           >
             Login
           </button>
@@ -89,13 +98,14 @@ export default function Login() {
             Don't have an account?{" "}
             <Link
               href="/auth/signup"
-              className="text-blue-600 underline"
+              className="text-green-600 underline"
             >
               Signup
             </Link>
           </p>
         </form>
       </div>
+    </div>
     </div>
   );
 }
