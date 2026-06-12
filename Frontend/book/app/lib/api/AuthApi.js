@@ -11,3 +11,5 @@ const login = async (data) =>{
         
     }
 }
+
+export {login};
