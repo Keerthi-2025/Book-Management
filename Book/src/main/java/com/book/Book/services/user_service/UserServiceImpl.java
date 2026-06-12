@@ -1,6 +1,5 @@
 package com.book.Book.services.user_service;
 
-
 import com.book.Book.Dto.Request.CreateLoginDto;
 import com.book.Book.Dto.Request.CreateUserdto;
 import com.book.Book.Dto.Request.SignupDto;
@@ -42,9 +41,6 @@ public class UserServiceImpl implements UserService{
         userRepository.save(user);
         return "User registered successfully";
     }
-
-
-
 
     @Override
     public String createUser( String userName, String email, String password, Role role) {
