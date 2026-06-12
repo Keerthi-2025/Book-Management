@@ -51,10 +51,19 @@ export default function Signup() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center">
-      <div className="w-[400px] bg-blue-400 shadow-lg rounded-xl p-8">
+    <div className="min-h-screen flex items-center  justify-center bg-cover bg-center"
+    style={{
+      backgroundImage: "url('/images/signup.jpg')",
+      backgroundSize: "100% 100%"
+    }}
+    
+    >
 
-        <h1 className="text-3xl font-bold mb-6 text-center">
+    
+    <div className=" flex items-center justify-center pr-110">
+      <div className="w-[400px] bg-white/40  rounded-xl p-8">
+
+        <h1 className="text-3xl font-bold mb-6 text-black text-center">
          SignUp
         </h1>
 
@@ -63,7 +72,7 @@ export default function Signup() {
           <input
             type="text"
             placeholder="Username"
-            className="w-full border p-3 rounded mb-4"
+            className="w-full border  p-3 rounded mb-4 placeholder-black"
             value={userName}
             onChange={(e) =>
               setUserName(e.target.value)
@@ -73,7 +82,7 @@ export default function Signup() {
           <input
             type="email"
             placeholder="Email"
-            className="w-full border p-3 rounded mb-4"
+            className="w-full border p-3 rounded mb-4 placeholder-black"
             value={email}
             onChange={(e) =>
               setEmail(e.target.value)
@@ -83,7 +92,7 @@ export default function Signup() {
           <input
             type="password"
             placeholder="Password"
-            className="w-full border p-3 rounded mb-4"
+            className="w-full border p-3 rounded mb-4 placeholder-black"
             value={password}
             onChange={(e) =>
               setPassword(e.target.value)
@@ -98,12 +107,12 @@ export default function Signup() {
 
           <button
             type="submit"
-            className="w-full bg-black text-white py-3 rounded"
+            className="w-full bg-black text-white py-3 rounded hover:bg-green-600 hover:text-black hover:font-bold "
           >
             Signup
           </button>
 
-          <p className="mt-4 text-center">
+          <p className="mt-4 text-center text-black">
             Already have an account?{" "}
             <Link
               href="/auth/login"
@@ -113,9 +122,10 @@ export default function Signup() {
             </Link>
           </p>
 
-        </form>
+        </form> 
 
       </div>
+    </div>
     </div>
   );
 }
