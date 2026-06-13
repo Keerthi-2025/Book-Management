@@ -1,5 +1,6 @@
+"use client";
 import { adminSignup } from "@/app/lib/api/authApi";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 
@@ -33,6 +34,35 @@ export default function AdminSignup() {
             
         }, 1500);
 
-
     }
-}
+
+    return(
+    <div >
+        <div className="w-[400px] p-8 rounded-xl shadow-lg">
+            <h1 className="text-3xl font-bold text-white">Admin Signup</h1>
+
+            <form>
+
+                <input
+                type="text"
+                placeholder="Username"
+                className="w-full border p-3 rounded mb-4 text-black bg-white"
+                value={userName}
+                onChange={(e)=>setUserName(e.target.value)}
+                />
+
+
+                <input
+                type="email"
+                placeholder="Email"
+                className="text-black bg-white w-full p-3 rounded  mb-4"
+                value={email}
+                onChange={(e)=>setEmail(e.target.value)}
+                />
+
+            </form>
+        </div>
+    </div>
+)
+};
+
