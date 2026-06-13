@@ -69,7 +69,7 @@ export default function AdminSignup() {
                 <input
                 type="password"
                 placeholder="Password"
-                className=" bg-white p-3 rounded w-full placeholder:text-black" 
+                className=" bg-white text-black p-3 rounded w-full placeholder:text-black" 
                 value={password}
                 onChange={(e) =>setPassword(e.target.value)}
                 />
