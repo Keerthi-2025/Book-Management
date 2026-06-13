@@ -38,10 +38,10 @@ export default function AdminSignup() {
 
     return(
     <div >
-        <div className="w-[400px] p-8 rounded-xl shadow-lg">
+        <div className="w-[400px] p-8 rounded-xl shadow-lg bg-blue-400 mt-40 ml-100">
             <h1 className="text-3xl font-bold text-white">Admin Signup</h1>
 
-            <form>
+            <form onSubmit={handleSignup}> 
 
                 <input
                 type="text"
@@ -59,6 +59,21 @@ export default function AdminSignup() {
                 value={email}
                 onChange={(e)=>setEmail(e.target.value)}
                 />
+
+               {error &&  <p className="text-red-500 ">{error}</p>}
+
+               {success && <p>{success}</p>}
+
+
+                <div>
+                     <button 
+
+                     type="submit"
+                className="bg-white p-3 rounded mb-4 text-black w-full ">Create Admin</button>
+
+                </div>
+               
+               
 
             </form>
         </div>
