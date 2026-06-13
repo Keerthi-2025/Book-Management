@@ -1,3 +1,4 @@
+import { adminSignup } from "@/app/lib/api/authApi";
 import { useRouter } from "next/router";
 import { useState } from "react";
 
@@ -19,6 +20,19 @@ export default function AdminSignup() {
             setError("All fields are required");
         }
 
-        
+        const response = await adminSignup({userName, email,password});
+
+        if(!response){
+            setError("Admin signup failed");
+        }
+
+        setsuccess("Admin created successfully");
+
+        setTimeout(() => {
+            router.push("/auth/login");
+            
+        }, 1500);
+
+
     }
 }
