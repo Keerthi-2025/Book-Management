@@ -4,8 +4,6 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 
-
-
 export default function AdminSignup() {
     const router = useRouter();
 
