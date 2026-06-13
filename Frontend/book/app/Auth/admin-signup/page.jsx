@@ -65,7 +65,7 @@ export default function AdminSignup() {
                {success && <p>{success}</p>}
 
 
-                <div>
+                <div className="justify-center">
                      <button 
 
                      type="submit"
