@@ -37,7 +37,12 @@ export default function AdminSignup() {
     }
 
     return(
-    <div >
+        <div
+    className="min-h-screen flex items-center justify-center bg-cover bg-center"
+      style={{
+        backgroundImage: "url('/images/login.jpeg')",
+      }}
+      >
         <div className="w-[400px] p-8 rounded-xl shadow-lg bg-blue-400 mt-40 ml-100">
             <h1 className="text-3xl font-bold text-white flex justify-center">Admin Signup</h1>
 
