@@ -80,7 +80,7 @@ export default function AdminSignup() {
                {success && <p className="text-green-500">{success}</p>}
 
 
-                <div className="justify-center">
+                <div className="justify-center mt-4">
                      <button 
                      type="submit"
                 className="bg-black p-3 rounded mb-4 text-white w-full hover:bg-blue-500">Create Admin</button>
