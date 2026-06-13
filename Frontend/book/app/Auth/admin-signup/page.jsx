@@ -38,20 +38,21 @@ export default function AdminSignup() {
 
     return(
         <div
-    className="min-h-screen bg-cover"
+    className="min-h-screen bg-cover justify-center"
       style={{
-        backgroundImage: "url('/images/admin.jpg')"
+        backgroundImage: "url('/images/admin.jpg')",
+        backgroundSize: "100% 100%"
       }}
       >
-        <div className="w-[400px] p-8 rounded-xl shadow-lg bg-blue-400 mt-40 ml-100">
-            <h1 className="text-3xl font-bold text-white flex justify-center">Admin Signup</h1>
+        <div className="w-[400px] p-8 rounded-xl shadow-lg bg-blue-400/10 mt-40 ml-80">
+            <h1 className="text-3xl font-bold text-black mb-6  flex justify-center">Admin Signup</h1>
 
             <form onSubmit={handleSignup}> 
 
                 <input
                 type="text"
                 placeholder="Username"
-                className="w-full border p-3 rounded mb-4 text-black bg-white"
+                className="w-full border p-3 rounded mb-4 text-black bg-white placeholder:text-black"
                 value={userName}
                 onChange={(e)=>setUserName(e.target.value)}
                 />
@@ -60,7 +61,7 @@ export default function AdminSignup() {
                 <input
                 type="email"
                 placeholder="Email"
-                className="text-black bg-white w-full p-3 rounded  mb-4"
+                className="text-black bg-white w-full p-3 rounded  mb-4 placeholder:text-black"
                 value={email}
                 onChange={(e)=>setEmail(e.target.value)}
                 />
@@ -73,7 +74,7 @@ export default function AdminSignup() {
                 <div className="justify-center">
                      <button 
                      type="submit"
-                className="bg-white p-3 rounded mb-4 text-black w-full ">Create Admin</button>
+                className="bg-black p-3 rounded mb-4 text-white w-full  ">Create Admin</button>
                 </div>
                
                
