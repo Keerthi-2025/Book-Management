@@ -41,7 +41,7 @@ export default function Login() {
       localStorage.setItem("token", response.token);
       localStorage.setItem("user", JSON.stringify(response));
 
-      router.push("/products");
+      router.push("/dashboard");
     } catch (error) {
       console.error(error);
       setError("Login failed");

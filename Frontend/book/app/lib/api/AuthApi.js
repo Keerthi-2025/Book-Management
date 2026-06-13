@@ -24,4 +24,16 @@ const signup = async (data) =>{
     }
 }
 
-export {login, signup};
+
+const adminSignup = async (data) =>{
+    try {
+        const response = await axiosInstance.post("/User/v1/admin/signup", data);
+        return response.data;
+
+    } catch (error) {
+        return null;
+        
+    }
+}
+
+export {login, signup, adminSignup};
