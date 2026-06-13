@@ -38,9 +38,9 @@ export default function AdminSignup() {
 
     return(
         <div
-    className="min-h-screen flex items-center justify-center bg-cover bg-center"
+    className="min-h-screen bg-cover"
       style={{
-        backgroundImage: "url('/images/admin.jpg')",
+        backgroundImage: "url('/images/admin.jpg')"
       }}
       >
         <div className="w-[400px] p-8 rounded-xl shadow-lg bg-blue-400 mt-40 ml-100">
