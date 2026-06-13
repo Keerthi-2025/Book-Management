@@ -66,9 +66,18 @@ export default function AdminSignup() {
                 onChange={(e)=>setEmail(e.target.value)}
                 />
 
+                <input
+                type="password"
+                placeholder="Password"
+                className=" bg-white p-3 rounded w-full placeholder:text-black" 
+                value={password}
+                onChange={(e) =>setPassword(e.target.value)}
+                />
+                
+
                {error &&  <p className="text-red-500 ">{error}</p>}
 
-               {success && <p>{success}</p>}
+               {success && <p className="text-green-500">{success}</p>}
 
 
                 <div className="justify-center">
