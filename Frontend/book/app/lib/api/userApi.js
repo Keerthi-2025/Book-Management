@@ -10,6 +10,17 @@ const getAllUsers = async () =>{
         return null;
         
     }
+};
+
+const getUserById = async () =>{
+    try {
+        const response = await axiosInstance.get("/User/v1/getUserById", data);
+        return response.data;
+        
+    } catch (error) {
+        return null;
+        
+    }
 }
 
-export {getAllUsers};
+export {getAllUsers, getUserById};
