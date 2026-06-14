@@ -1,27 +1,31 @@
+import AdminSidebar from "@/app/components/AdminSidebar";
 
+export default function AdminDashboard() {
+  return (
+    <div className="flex">
+      <AdminSidebar />
 
+      <div className="flex-1 p-10">
+        <h1 className="text-4xl font-bold mb-8">
+          Admin Dashboard
+        </h1>
 
-export default function AdminDashboard () {
+        <div className="grid grid-cols-2 gap-6">
+          <div className="bg-blue-500 text-white p-6 rounded-lg shadow">
+            <h2 className="text-xl font-semibold">
+              Total Users
+            </h2>
+            <p className="text-3xl mt-2">0</p>
+          </div>
 
-    return(
-        <div className="bg-gray-500 min-h-screen">
-
-        
-        <div className="flex-1 p-10">
-        <h1 className="text-black font-bold flex justify-center">Admin Dashboard</h1>
-    </div>
-
-        <div className="grid grid-cols-2 gap-20">
-            <div className="text-white font-bold border p-4 mt-2 w-100 bg-black flex justify-center rounded-2xl">
-                <h2>Total Users</h2>
-            </div>
-
-
-            <div className="text-white bg-black border flex justify-center w-100 font-bold p-4 mt-2 rounded-2xl">
-                <h2>Total Books</h2>
-            </div>
+          <div className="bg-green-500 text-white p-6 rounded-lg shadow">
+            <h2 className="text-xl font-semibold">
+              Total Books
+            </h2>
+            <p className="text-3xl mt-2">0</p>
+          </div>
         </div>
-    
-    </div> 
-    )
+      </div>
+    </div>
+  );
 }
