@@ -1,6 +1,8 @@
 import AdminSidebar from "@/app/components/AdminSidebar";
 
 export default function AdminDashboard() {
+
+
   return (
     <div className="flex">
       <AdminSidebar />

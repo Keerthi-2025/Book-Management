@@ -1,6 +1,31 @@
+"use client";
+
 import AdminSidebar from "@/app/components/AdminSidebar";
+import { useState } from "react";
+import { useEffect } from "react";
+
+import { getAllUsers } from "@/app/lib/api/userApi";
 
 export default function UsersPage() {
+
+  
+    const [users, setUsers] = useState([]);
+
+    
+
+    useEffect(()=>{
+      fetchUsers();
+    }, []);
+
+    const fetchUsers = async () =>{
+        const data = await getAllUsers();
+
+        if(data){
+            setUsers(data);
+        }
+    };
+
+    
   return (
     <div className="flex">
       <AdminSidebar />
@@ -27,15 +52,25 @@ export default function UsersPage() {
 
           <table className="w-full border">
             <thead>
-              <tr className="bg-gray-200">
+              <tr className="bg-gray-200 text-black">
                 <th className="border p-3">User ID</th>
                 <th className="border p-3">Username</th>
                 <th className="border p-3">Email</th>
               </tr>
             </thead>
 
-            <tbody>
+            <tbody className="text-white">
               {/* Users data will come here */}
+              {users.map((user) => (
+                <tr key={user.user_Id}>
+                  <td className="border p-3">{user.user_Id}</td>
+                  <td className="border p-3">{user.userName}</td>
+                  <td className="border p-3">{user.email}</td>
+
+                </tr>
+
+             ) )}
+              
             </tbody>
           </table>
         </div>
