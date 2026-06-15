@@ -3,11 +3,13 @@
 import AdminSidebar from "@/app/components/AdminSidebar";
 
 import { getUserCount } from "@/app/lib/api/userApi";
+import { getBookCount } from "@/app/lib/api/bookApi";
 import { useEffect, useState } from "react";
 
 export default function AdminDashboard() {
 
   const[userCount, setuserCount] = useState(0);
+  const [bookCount, setBookCount] = useState(0);
 
 
   useEffect(()=>{
@@ -18,9 +20,14 @@ export default function AdminDashboard() {
 
   const fetchCounts = async () =>{
     const users = await getUserCount();
+    const books = await getBookCount();
 
     if(users !== null){
       setuserCount(users);
+
+      if(books !== null){
+        setBookCount(books);
+      }
     }
   }
 
@@ -46,8 +53,9 @@ export default function AdminDashboard() {
             <h2 className="text-xl font-semibold">
               Total Books
             </h2>
-            <p className="text-3xl mt-2">0</p>
+            <p className="text-3xl mt-2">{bookCount}</p>
           </div>
+
         </div>
       </div>
     </div>
