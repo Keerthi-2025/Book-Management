@@ -10,6 +10,7 @@ export default function UsersPage() {
 
   
     const [users, setUsers] = useState([]);
+    const [searchedUser, setSearchedUser] = useState(null);
 
     
 
