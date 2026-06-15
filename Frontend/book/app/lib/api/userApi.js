@@ -12,7 +12,7 @@ const getAllUsers = async () =>{
     }
 };
 
-const getUserById = async () =>{
+const getUserById = async (userId) =>{
     try {
         const response = await axiosInstance.get("/User/v1/getUserById", {
             params:{
@@ -22,6 +22,7 @@ const getUserById = async () =>{
         return response.data;
         
     } catch (error) {
+        console.log(error);
         return null;
         
     }

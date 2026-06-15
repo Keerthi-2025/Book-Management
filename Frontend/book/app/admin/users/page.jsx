@@ -17,6 +17,19 @@ export default function UsersPage() {
     }
   };
 
+
+//   const handleSearch = async () => {
+//   console.log("Searching:", user_Id);
+
+//   const user = await getUserById(user_Id);
+
+//   console.log("Response:", user);
+
+//   if (user) {
+//     setSearchedUser(user);
+//   }
+// };
+
   const fetchUsers = async () => {
     const data = await getAllUsers();
 
