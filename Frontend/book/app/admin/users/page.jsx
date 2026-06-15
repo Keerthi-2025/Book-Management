@@ -4,7 +4,7 @@ import AdminSidebar from "@/app/components/AdminSidebar";
 import { useState } from "react";
 import { useEffect } from "react";
 
-import { getAllUsers } from "@/app/lib/api/userApi";
+import { getAllUsers, getUserById } from "@/app/lib/api/userApi";
 
 export default function UsersPage() {
 
