@@ -1,6 +1,22 @@
 import AdminSidebar from "@/app/components/AdminSidebar";
 
+import { getUserCount } from "@/app/lib/api/userApi";
+import { useEffect, useState } from "react";
+
 export default function AdminDashboard() {
+
+  const[userCount, setuserCount] = useState(0);
+
+
+  useEffect(()=>{
+
+    fetchCounts();
+
+  }, [])
+
+  const fetchCounts = async () =>{
+    const users = await getUserCount();
+  }
 
 
   return (
