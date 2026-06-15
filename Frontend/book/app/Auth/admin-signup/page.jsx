@@ -1,5 +1,6 @@
 "use client";
 import { adminSignup } from "@/app/lib/api/authApi";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
@@ -85,6 +86,12 @@ export default function AdminSignup() {
                      type="submit"
                 className="bg-black p-3 rounded mb-4 text-white w-full hover:bg-blue-500">Create Admin</button>
                 </div>
+
+                <p>Already have an Account?{" "}
+                    <Link  href="/auth/login">Login</Link>
+                </p>
+
+
                
                
 
