@@ -52,7 +52,10 @@ export default function UsersPage() {
           onChange={(e)=> setSearchedUser(e.target.value)}
         />
 
-        <button className="bg-blue-500 text-white px-5 p-3  rounded">
+        <button 
+        className="bg-blue-500 text-white px-5 p-3  rounded"
+        onClick={handleSearch}
+        >
           Search User
         </button>
 
