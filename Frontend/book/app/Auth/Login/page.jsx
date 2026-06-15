@@ -41,7 +41,7 @@ export default function Login() {
       localStorage.setItem("token", response.token);
       localStorage.setItem("user", JSON.stringify(response));
 
-      router.push("/dashboard");
+      router.push("/admin/dashboard");   //this works for admin also modify for user
     } catch (error) {
       console.error(error);
       setError("Login failed");
