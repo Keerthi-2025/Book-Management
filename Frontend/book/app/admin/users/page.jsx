@@ -48,6 +48,8 @@ export default function UsersPage() {
           type="text"
           placeholder="Enter User UUID"
           className="border p-3 rounded w-full max-w-md mb-4"
+          value={user_Id}
+          onChange={(e)=> setSearchedUser(e.target.value)}
         />
 
         <button className="bg-blue-500 text-white px-5 p-3  rounded">
