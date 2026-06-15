@@ -28,4 +28,16 @@ const getUserById = async (userId) =>{
     }
 }
 
-export {getAllUsers, getUserById};
+
+const getUserCount = async () =>{
+    try {
+        const response = await axiosInstance.get("/User/ve/userCount");
+        return response.data;
+
+    } catch (error) {
+        return null;
+        
+    }
+}
+
+export {getAllUsers, getUserById, getUserCount};
