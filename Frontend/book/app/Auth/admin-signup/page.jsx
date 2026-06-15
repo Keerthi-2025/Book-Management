@@ -87,9 +87,15 @@ export default function AdminSignup() {
                 className="bg-black p-3 rounded mb-4 text-white w-full hover:bg-blue-500">Create Admin</button>
                 </div>
 
-                <p>Already have an Account?{" "}
-                    <Link  href="/auth/login">Login</Link>
+
+                <div className="flex justify-center">
+                    
+                    <p className="text-black font-bold ">Already have an Account?{" "}
+                    <Link  href="/auth/login" className="hover:text-green-900 underline">Login</Link>
                 </p>
+
+                </div>
+                
 
 
                
