@@ -48,6 +48,6 @@ public class BookController {
 
     @GetMapping("/v1/bookCount")
     public ResponseEntity<Long>  getBookCount(){
-        return ResponseEntity.ok(bookService.)
+        return ResponseEntity.ok(bookService.getBookCount());
     }
 }
