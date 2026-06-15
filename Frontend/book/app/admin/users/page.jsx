@@ -12,6 +12,14 @@ export default function UsersPage() {
     const [users, setUsers] = useState([]);
     const [searchedUser, setSearchedUser] = useState(null);
 
+
+    const handleSearch = async () =>{
+      const user = await getUserById(user_Id);
+
+      if(user){
+        setSearchedUser(user);
+      }
+    }
     
 
     useEffect(()=>{
