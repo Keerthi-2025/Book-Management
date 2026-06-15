@@ -31,7 +31,7 @@ const getUserById = async (userId) =>{
 
 const getUserCount = async () =>{
     try {
-        const response = await axiosInstance.get("/User/ve/userCount");
+        const response = await axiosInstance.get("/User/v1/userCount");
         return response.data;
 
     } catch (error) {

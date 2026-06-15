@@ -1,3 +1,5 @@
+"use client";
+
 import AdminSidebar from "@/app/components/AdminSidebar";
 
 import { getUserCount } from "@/app/lib/api/userApi";
@@ -16,6 +18,10 @@ export default function AdminDashboard() {
 
   const fetchCounts = async () =>{
     const users = await getUserCount();
+
+    if(users !== null){
+      setuserCount(users);
+    }
   }
 
 
@@ -33,7 +39,7 @@ export default function AdminDashboard() {
             <h2 className="text-xl font-semibold">
               Total Users
             </h2>
-            <p className="text-3xl mt-2">0</p>
+            <p className="text-3xl mt-2">{userCount}</p>
           </div>
 
           <div className="bg-green-500 text-white p-6 rounded-lg shadow">
