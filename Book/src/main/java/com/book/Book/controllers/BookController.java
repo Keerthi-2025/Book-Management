@@ -45,4 +45,9 @@ public class BookController {
     public  ResponseEntity<List<Book>>searchBooks(@RequestParam String title){
         return  ResponseEntity.ok(bookService.searchBooks(title));
     }
+
+    @GetMapping("/v1/bookCount")
+    public ResponseEntity<Long>  getBookCount(){
+        return ResponseEntity.ok(bookService.)
+    }
 }

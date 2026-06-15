@@ -19,4 +19,6 @@ public interface BookService {
      Book getBookByTitle(String title);
 
      List<Book>searchBooks(String title);
+
+     Long getBookCount();
 }

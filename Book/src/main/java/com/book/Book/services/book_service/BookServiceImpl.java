@@ -66,4 +66,9 @@ public class BookServiceImpl implements BookService {
     public List<Book> searchBooks(String title) {
         return bookRepository.findByTitleContainingIgnoreCase(title);
     }
+
+    @Override
+    public Long getBookCount() {
+        return bookRepository.count();
+    }
 }
