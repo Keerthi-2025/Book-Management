@@ -46,4 +46,16 @@ const deleteBook = async () =>{
         
     }
 }
+
+const searchBooks = async () =>{
+    try {
+        const response = await axiosInstance.get(`/Book/v1/searchBooks?title=${title}`);
+        return response.data;
+        
+    } catch (error) {
+        console.log(error);
+        return null;
+        
+    }
+}
 export {getBookCount, getAllBooks, addBook, deleteBook};
