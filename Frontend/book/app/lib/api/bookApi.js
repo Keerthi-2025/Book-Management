@@ -33,4 +33,17 @@ const addBook = async () =>{
         
     }
 }
-export {getBookCount, getAllBooks, addBook};
+
+const deleteBook = async () =>{
+    try {
+
+        const response = await axiosInstance.delete(`Book/v1/deleteBook?book_Id=${bookId}`);
+        return response.data;
+        
+    } catch (error) {
+        console.log(error);
+        return null;
+        
+    }
+}
+export {getBookCount, getAllBooks, addBook, deleteBook};
