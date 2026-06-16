@@ -27,7 +27,7 @@ export default function AdminSidebar() {
         </Link>
 
         <Link
-          href="/admin/books"
+          href="/admin/book"
           className="hover:bg-gray-700 p-3 rounded"
         >
           Books

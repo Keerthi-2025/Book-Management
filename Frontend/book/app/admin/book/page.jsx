@@ -3,9 +3,9 @@
 import { useEffect, useState } from "react";
 import AdminSidebar from "@/app/components/AdminSidebar";
 import {
+  getAllBooks,
   addBook,
   deleteBook,
-  getAllBooks,
   searchBooks,
 } from "@/app/lib/api/bookApi";
 
@@ -29,6 +29,11 @@ export default function AdminBooks() {
   };
 
   const handleAddBook = async () => {
+    if (!title.trim() || !author.trim()) {
+      alert("Title and Author are required");
+      return;
+    }
+
     const bookData = {
       title,
       author,
@@ -37,17 +42,31 @@ export default function AdminBooks() {
     const result = await addBook(bookData);
 
     if (result) {
+      alert("Book Added Successfully");
+
       setTitle("");
       setAuthor("");
+
       fetchBooks();
+    } else {
+      alert("Failed to add book");
     }
   };
 
-  const handleDelete = async (bookId: string) => {
+  const handleDelete = async (bookId) => {
+    const confirmDelete = window.confirm(
+      "Are you sure you want to delete this book?"
+    );
+
+    if (!confirmDelete) return;
+
     const result = await deleteBook(bookId);
 
     if (result) {
+      alert("Book Deleted Successfully");
       fetchBooks();
+    } else {
+      alert("Failed to delete book");
     }
   };
 
@@ -57,26 +76,27 @@ export default function AdminBooks() {
       return;
     }
 
-    const data = await searchBooks(searchTitle);
+    const data = await searchBooks(searchTitle.trim());
 
     if (data) {
       setBooks(data);
+    } else {
+      setBooks([]);
     }
   };
 
   return (
-    <div className="flex">
+    <div className="flex min-h-screen">
       <AdminSidebar />
 
-      <div className="flex-1 p-10">
+      <div className="flex-1 p-8">
         <h1 className="text-4xl font-bold mb-8">
           Book Management
         </h1>
 
         {/* Add Book */}
-
         <div className="bg-white p-6 rounded-lg shadow mb-8">
-          <h2 className="text-2xl font-semibold mb-4 text-black">
+          <h2 className="text-2xl font-semibold text-black mb-4">
             Add Book
           </h2>
 
@@ -91,40 +111,54 @@ export default function AdminBooks() {
           <input
             type="text"
             placeholder="Author"
-            className="w-full border p-3 rounded mb-3 text-black"
+            className="w-full border p-3 rounded mb-4 text-black"
             value={author}
             onChange={(e) => setAuthor(e.target.value)}
           />
 
           <button
             onClick={handleAddBook}
-            className="bg-blue-600 text-white px-6 py-2 rounded"
+            disabled={!title.trim() || !author.trim()}
+            className="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 disabled:bg-gray-400"
           >
             Add Book
           </button>
         </div>
 
         {/* Search */}
-
         <div className="flex gap-3 mb-6">
           <input
             type="text"
-            placeholder="Search Book"
-            className="border p-3 rounded flex-1 text-black"
+            placeholder="Search by title"
+            className="flex-1 border p-3 rounded text-white"
             value={searchTitle}
             onChange={(e) => setSearchTitle(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                handleSearch();
+              }
+            }}
           />
 
           <button
             onClick={handleSearch}
-            className="bg-green-600 text-white px-5 rounded"
+            className="bg-green-600 text-white px-5 rounded hover:bg-green-700"
           >
             Search
+          </button>
+
+          <button
+            onClick={() => {
+              setSearchTitle("");
+              fetchBooks();
+            }}
+            className="bg-gray-600 text-white px-5 rounded hover:bg-gray-700"
+          >
+            Reset
           </button>
         </div>
 
         {/* Books Table */}
-
         <div className="bg-white rounded-lg shadow overflow-hidden">
           <table className="w-full">
             <thead className="bg-gray-200 text-black">
@@ -137,27 +171,38 @@ export default function AdminBooks() {
             </thead>
 
             <tbody>
-              {books.map((book: any) => (
-                <tr
-                  key={book.book_Id}
-                  className="border-b text-black"
-                >
-                  <td className="p-4">{book.book_Id}</td>
-                  <td className="p-4">{book.title}</td>
-                  <td className="p-4">{book.author}</td>
+              {books.length > 0 ? (
+                books.map((book) => (
+                  <tr
+                    key={book.book_Id}
+                    className="border-b text-black"
+                  >
+                    <td className="p-4">{book.book_Id}</td>
+                    <td className="p-4">{book.title}</td>
+                    <td className="p-4">{book.author}</td>
 
-                  <td className="p-4">
-                    <button
-                      onClick={() =>
-                        handleDelete(book.book_Id)
-                      }
-                      className="bg-red-600 text-white px-4 py-2 rounded"
-                    >
-                      Delete
-                    </button>
+                    <td className="p-4">
+                      <button
+                        onClick={() =>
+                          handleDelete(book.book_Id)
+                        }
+                        className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700"
+                      >
+                        Delete
+                      </button>
+                    </td>
+                  </tr>
+                ))
+              ) : (
+                <tr>
+                  <td
+                    colSpan="4"
+                    className="p-4 text-center text-black"
+                  >
+                    No books found
                   </td>
                 </tr>
-              ))}
+              )}
             </tbody>
           </table>
         </div>

@@ -22,7 +22,7 @@ const getAllBooks = async () =>{
     }
 }
 
-const addBook = async () =>{
+const addBook = async (bookData) =>{
     try {
         const response = await axiosInstance.post("/Book/v1/addBook", bookData);
         return response.data;
@@ -34,7 +34,7 @@ const addBook = async () =>{
     }
 }
 
-const deleteBook = async () =>{
+const deleteBook = async (bookId) =>{
     try {
 
         const response = await axiosInstance.delete(`Book/v1/deleteBook?book_Id=${bookId}`);
@@ -47,7 +47,7 @@ const deleteBook = async () =>{
     }
 }
 
-const searchBooks = async () =>{
+const searchBooks = async (title) =>{
     try {
         const response = await axiosInstance.get(`/Book/v1/searchBooks?title=${title}`);
         return response.data;
@@ -58,4 +58,4 @@ const searchBooks = async () =>{
         
     }
 }
-export {getBookCount, getAllBooks, addBook, deleteBook};
+export {getBookCount, getAllBooks, addBook, deleteBook,searchBooks};
