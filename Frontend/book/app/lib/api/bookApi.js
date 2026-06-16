@@ -21,4 +21,16 @@ const getAllBooks = async () =>{
         
     }
 }
-export {getBookCount};
+
+const addBook = async () =>{
+    try {
+        const response = await axiosInstance.post("/Book/v1/addBook", bookData);
+        return response.data;
+        
+    } catch (error) {
+        console.log(error);
+        return null;
+        
+    }
+}
+export {getBookCount, getAllBooks, addBook};
