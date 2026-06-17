@@ -37,7 +37,7 @@ public class BookController {
     }
 
     @GetMapping("/v1/getBookByTitle")
-    public ResponseEntity<Book> getBookByTtotle(@RequestParam String title){
+    public ResponseEntity<Book> getBookByTitle(@RequestParam String title){
         return ResponseEntity.ok(bookService.getBookByTitle(title));
     }
 
