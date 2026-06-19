@@ -1,6 +1,7 @@
 package com.book.Book.services.book_service;
 
 import com.book.Book.Dto.Request.CreateBookDto;
+import com.book.Book.Dto.Response.BookResponseDto;
 import com.book.Book.Genre;
 import com.book.Book.entities.Book;
 
@@ -24,7 +25,7 @@ public interface BookService {
      Long getBookCount();
 
 
-     List<CreateBookDto> getAllAvailableBooks();
+     List<BookResponseDto> getAllAvailableBooks();
 
-     List<CreateBookDto> getBooksByGenre(Genre genre);
+     List<BookResponseDto> getBooksByGenre(Genre genre);
 }

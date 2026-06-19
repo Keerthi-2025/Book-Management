@@ -3,6 +3,7 @@ package com.book.Book.services.book_service;
 
 import com.book.Book.BookStatus;
 import com.book.Book.Dto.Request.CreateBookDto;
+import com.book.Book.Dto.Response.BookResponseDto;
 import com.book.Book.Genre;
 import com.book.Book.entities.Book;
 import com.book.Book.exceptions.ApiRequestException;
@@ -75,12 +76,12 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public List<CreateBookDto> getAllAvailableBooks() {
-        return bookRepository.findByStatus(BookStatus.AVAILABLE);
+    public List<BookResponseDto> getAllAvailableBooks() {
+        return bookRepository.findByStatus(BookStatus.AVAILABLE).stream().map(bookMapper::toResponse).toList();
     }
 
     @Override
-    public List<CreateBookDto> getBooksByGenre(Genre genre) {
-        return List.of();
+    public List<BookResponseDto> getBooksByGenre(Genre genre) {
+        return bookRepository.findByGenre(genre).stream().map(bookMapper::toResponse).toList();
     }
 }
