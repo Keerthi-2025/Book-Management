@@ -57,6 +57,7 @@ const searchBooks = async (title) =>{
         return null;
         
     }
+}
 
     const getAllAvailableBooks = async ()=>{
         try {
@@ -83,7 +84,6 @@ const searchBooks = async (title) =>{
         }
     }
     
-    }
-
+    
 
 export {getBookCount, getAllBooks, addBook, deleteBook,searchBooks, getAllAvailableBooks, getBooksByGenre};
