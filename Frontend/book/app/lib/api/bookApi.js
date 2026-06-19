@@ -1,4 +1,5 @@
 import axiosInstance from "@/app/utils/axiosInstance"
+import axios from "axios";
 
 const getBookCount = async () =>{
     try {
@@ -57,5 +58,21 @@ const searchBooks = async (title) =>{
         return null;
         
     }
-}
-export {getBookCount, getAllBooks, addBook, deleteBook,searchBooks};
+
+    const getAllAvailableBooks = async ()=>{
+        try {
+            const respose = await axiosInstance.get("/User/v1/getAllAvailableBooks");
+            return respose.data;
+            
+        } catch (error) {
+            console.log(error);
+            return null;
+            
+        }
+
+    }
+    
+    }
+
+
+export {getBookCount, getAllBooks, addBook, deleteBook,searchBooks, getAllAvailableBooks};
