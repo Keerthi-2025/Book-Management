@@ -44,6 +44,7 @@ public class BookServiceImpl implements BookService {
         book.setAuthor(dto.author());
         book.setGenre(dto.genre());
         book.setImageUrl(dto.imageUrl());
+        bookRepository.save(book);
 
         return "Book updated successfully";
     }

@@ -3,9 +3,13 @@ package com.book.Book.controllers;
 
 import com.book.Book.Dto.Request.CreateLoginDto;
 import com.book.Book.Dto.Request.CreateUserdto;
+import com.book.Book.Dto.Response.BookResponseDto;
 import com.book.Book.Dto.Response.CreateLoginResponseDto;
+import com.book.Book.Genre;
 import com.book.Book.Role;
+import com.book.Book.entities.Book;
 import com.book.Book.entities.User;
+import com.book.Book.services.book_service.BookService;
 import com.book.Book.services.user_service.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,9 +22,12 @@ import java.util.UUID;
 
 public class UserController {
     private final UserService userService;
+    private final BookService bookService;
 
-    public UserController(UserService userService) {
+    public UserController(UserService userService, BookService bookService) {
+
         this.userService = userService;
+        this.bookService = bookService;
     }
 
     @PostMapping("/v1/createUser")
@@ -61,6 +68,18 @@ public class UserController {
     @GetMapping("/v1/userCount")
     public ResponseEntity<Long> getUsersCount(){
         return ResponseEntity.ok(userService.getUserCount());
+    }
+
+
+    //USER ACTIONS
+    @GetMapping("/v1/getAllAvailableBooks")
+    public  ResponseEntity<List<BookResponseDto>> getAllAvailableBooks(){
+        return ResponseEntity.ok(bookService.getAllAvailableBooks());
+    }
+
+    @GetMapping("/v1/getBooksByGenre")
+    public  ResponseEntity<List<BookResponseDto>> getBooksByGenre(@RequestParam Genre genre){
+        return ResponseEntity.ok(bookService.getBooksByGenre(genre));
     }
 
 
