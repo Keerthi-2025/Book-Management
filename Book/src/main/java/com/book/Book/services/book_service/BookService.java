@@ -1,6 +1,7 @@
 package com.book.Book.services.book_service;
 
 import com.book.Book.Dto.Request.CreateBookDto;
+import com.book.Book.Genre;
 import com.book.Book.entities.Book;
 
 import java.util.List;
@@ -21,4 +22,9 @@ public interface BookService {
      List<Book>searchBooks(String title);
 
      Long getBookCount();
+
+
+     List<CreateBookDto> getAllAvailableBooks();
+
+     List<CreateBookDto> getBooksByGenre(Genre genre);
 }

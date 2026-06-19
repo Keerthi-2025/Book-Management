@@ -1,7 +1,9 @@
 package com.book.Book.services.book_service;
 
 
+import com.book.Book.BookStatus;
 import com.book.Book.Dto.Request.CreateBookDto;
+import com.book.Book.Genre;
 import com.book.Book.entities.Book;
 import com.book.Book.exceptions.ApiRequestException;
 import com.book.Book.mappers.BookMapper;
@@ -70,5 +72,15 @@ public class BookServiceImpl implements BookService {
     @Override
     public Long getBookCount() {
         return bookRepository.count();
+    }
+
+    @Override
+    public List<CreateBookDto> getAllAvailableBooks() {
+        return bookRepository.findByStatus(BookStatus.AVAILABLE);
+    }
+
+    @Override
+    public List<CreateBookDto> getBooksByGenre(Genre genre) {
+        return List.of();
     }
 }
