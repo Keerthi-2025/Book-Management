@@ -1,5 +1,4 @@
 import axiosInstance from "@/app/utils/axiosInstance"
-import axios from "axios";
 
 const getBookCount = async () =>{
     try {
@@ -71,8 +70,20 @@ const searchBooks = async (title) =>{
         }
 
     }
+
+    const getBooksByGenre = async (genre) =>{
+        try {
+            const response = await axiosInstance.get(`/User/v1/getBooksByGenre?genre=${genre}`);
+            return response.data;
+            
+        } catch (error) {
+            console.log(error);
+            return null;
+            
+        }
+    }
     
     }
 
 
-export {getBookCount, getAllBooks, addBook, deleteBook,searchBooks, getAllAvailableBooks};
+export {getBookCount, getAllBooks, addBook, deleteBook,searchBooks, getAllAvailableBooks, getBooksByGenre};
