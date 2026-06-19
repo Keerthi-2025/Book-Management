@@ -15,12 +15,12 @@ export default function Login() {
   const handleLogin = async (e) => {
     e.preventDefault();
 
-    if (!email) {
+    if (!email.trim()) {
       setError("Please enter email");
       return;
     }
 
-    if (!password) {
+    if (!password.trim()) {
       setError("Please enter password");
       return;
     }
@@ -38,10 +38,19 @@ export default function Login() {
         return;
       }
 
+      // Save token and user details
       localStorage.setItem("token", response.token);
       localStorage.setItem("user", JSON.stringify(response));
 
-      router.push("/admin/dashboard");   //this works for admin also modify for user
+      // Redirect based on role
+      if (response.role === "ADMIN") {
+        router.push("/admin/dashboard");
+      } else if (response.role === "USER") {
+        router.push("/user/dashboard");
+      } else {
+        setError("Unknown user role");
+      }
+
     } catch (error) {
       console.error(error);
       setError("Login failed");
@@ -49,63 +58,61 @@ export default function Login() {
   };
 
   return (
-
-    <div className=" min-h-screen flex items-center justify-center bg-cover bg-center"
-    style={{
-      backgroundImage: "url('/images/login.jpeg')",
-      backgroundSize: "100% 100%"
-      
-    }}>
-
-   
-    <div className=" flex items-center justify-center ml-100">
-      <div className="w-[390px] bg-black shadow-lg rounded-xl p-8">
-        <h1 className="text-3xl font-bold mb-6 text-center">
-          Login
-        </h1>
-
-        <form onSubmit={handleLogin}>
-          <input
-            type="email"
-            placeholder="Email"
-            className="w-full border p-3 rounded mb-4"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-
-          <input
-            type="password"
-            placeholder="Password"
-            className="w-full border p-3 rounded mb-4"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-
-          {error && (
-            <p className="text-red-500 mb-3">
-              {error}
-            </p>
-          )}
-
-          <button
-            type="submit"
-            className="w-full bg-amber-700 text-white py-3  rounded hover:bg-green-500"
-          >
+    <div
+      className="min-h-screen flex items-center justify-center bg-cover bg-center"
+      style={{
+        backgroundImage: "url('/images/login.jpeg')",
+        backgroundSize: "100% 100%",
+      }}
+    >
+      <div className="flex items-center justify-center ml-100">
+        <div className="w-[390px] bg-black shadow-lg rounded-xl p-8">
+          <h1 className="text-3xl font-bold mb-6 text-center text-white">
             Login
-          </button>
+          </h1>
 
-          <p className="mt-4 text-center">
-            Don't have an account?{" "}
-            <Link
-              href="/auth/signup"
-              className="text-green-600 underline"
+          <form onSubmit={handleLogin}>
+            <input
+              type="email"
+              placeholder="Email"
+              className="w-full border p-3 rounded mb-4 text-black bg-white"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+
+            <input
+              type="password"
+              placeholder="Password"
+              className="w-full border p-3 rounded mb-4 text-black bg-white"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+
+            {error && (
+              <p className="text-red-500 mb-3">
+                {error}
+              </p>
+            )}
+
+            <button
+              type="submit"
+              className="w-full bg-amber-700 text-white py-3 rounded hover:bg-green-500"
             >
-              Signup
-            </Link>
-          </p>
-        </form>
+              Login
+            </button>
+
+            <p className="mt-4 text-center text-white">
+              Don't have an account?{" "}
+              <Link
+                href="/auth/signup"
+                className="text-green-500 underline"
+              >
+                Signup
+              </Link>
+            </p>
+          </form>
+        </div>
       </div>
-    </div>
     </div>
   );
 }
