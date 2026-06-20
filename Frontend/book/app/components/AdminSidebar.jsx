@@ -12,19 +12,7 @@ export default function AdminSidebar() {
       </h2>
 
       <nav className="flex flex-col gap-4">
-        <Link
-          href="/admin/dashboard"
-          className="hover:bg-gray-700 p-3 rounded"
-        >
-          Dashboard
-        </Link>
-
-        <Link
-          href="/admin/users"
-          className="hover:bg-gray-700 p-3 rounded"
-        >
-          Users
-        </Link>
+       
 
         <Link
           href="/admin/book"

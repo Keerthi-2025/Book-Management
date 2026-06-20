@@ -1,8 +1,12 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { getAllAvailableBooks, getBooksByGenre } from "@/app/lib/api/bookApi";
+import {
+  getAllAvailableBooks,
+  getBooksByGenre,
+} from "@/app/lib/api/bookApi";
 
+import UserSidebar from "@/app/components/UserSidebar";
 
 export default function UserDashboard() {
   const [books, setBooks] = useState([]);
@@ -17,148 +21,133 @@ export default function UserDashboard() {
     setBooks(data);
   };
 
-  const handleSearch = async () => {
-    if (!searchTitle.trim()) {
-      fetchAvailableBooks();
-      return;
-    }
-
-    const data = await searchBooks(searchTitle);
-    setBooks(data);
-  };
-
   const handleGenre = async (genre) => {
     const data = await getBooksByGenre(genre);
     setBooks(data);
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 p-6">
+    <div className="flex min-h-screen bg-gray-100">
+      <UserSidebar />
 
-      <h1 className="text-3xl font-bold mb-6 text-black">
-        Library Dashboard
-      </h1>
+      <main className="flex-1 p-8">
+        <h1 className="text-4xl font-bold text-gray-800 mb-8">
+          Library Dashboard
+        </h1>
 
-      {/* Search */}
+        {/* Search */}
+        <div className="flex gap-3 mb-6">
+          <input
+            type="text"
+            placeholder="Search books..."
+            className="flex-1 border border-gray-300 p-3 rounded-lg text-black"
+            value={searchTitle}
+            onChange={(e) => setSearchTitle(e.target.value)}
+          />
 
-      <div className="flex gap-3 mb-6">
-        <input
-          type="text"
-          placeholder="Search Books..."
-          className="border p-3 rounded w-full text-black"
-          value={searchTitle}
-          onChange={(e) => setSearchTitle(e.target.value)}
-        />
+          <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 rounded-lg">
+            Search
+          </button>
+        </div>
 
-        <button
-          onClick={handleSearch}
-          className="bg-blue-500 text-white px-5 rounded"
-        >
-          Search
-        </button>
-      </div>
-
-      {/* Genres */}
-
-      <div className="flex gap-3 flex-wrap mb-8">
-
-        <button
-          onClick={fetchAvailableBooks}
-          className="bg-gray-700 text-white px-4 py-2 rounded"
-        >
-          All Available
-        </button>
-
-        <button
-          onClick={() => handleGenre("FICTION")}
-          className="bg-green-600 text-white px-4 py-2 rounded"
-        >
-          Fiction
-        </button>
-
-        <button
-          onClick={() => handleGenre("NON_FICTION")}
-          className="bg-green-600 text-white px-4 py-2 rounded"
-        >
-          Non Fiction
-        </button>
-
-        <button
-          onClick={() => handleGenre("SCIENCE")}
-          className="bg-green-600 text-white px-4 py-2 rounded"
-        >
-          Science
-        </button>
-
-        <button
-          onClick={() => handleGenre("HISTORY")}
-          className="bg-green-600 text-white px-4 py-2 rounded"
-        >
-          History
-        </button>
-
-        <button
-          onClick={() => handleGenre("TECHNOLOGY")}
-          className="bg-green-600 text-white px-4 py-2 rounded"
-        >
-          Technology
-        </button>
-      </div>
-
-      {/* Books Grid */}
-
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-
-        {books.map((book) => (
-
-          <div
-            key={book.book_Id}
-            className="bg-white rounded-lg shadow-md overflow-hidden"
+        {/* Genre Filters */}
+        <div className="flex flex-wrap gap-3 mb-8">
+          <button
+            onClick={fetchAvailableBooks}
+            className="bg-green-600 text-white px-4 py-2 rounded-lg"
           >
+            All Books
+          </button>
 
-            <img
-              src={
-                book.imageUrl ||
-                "https://via.placeholder.com/300x400?text=No+Image"
-              }
-              alt={book.title}
-              className="w-full h-64 object-cover"
-            />
+          <button
+            onClick={() => handleGenre("FICTION")}
+            className="bg-green-600 text-white px-4 py-2 rounded-lg"
+          >
+            Fiction
+          </button>
 
-            <div className="p-4">
+          <button
+            onClick={() => handleGenre("NON_FICTION")}
+            className="bg-green-600 text-white px-4 py-2 rounded-lg"
+          >
+            Non Fiction
+          </button>
 
-              <h2 className="font-bold text-xl text-black">
-                {book.title}
-              </h2>
+          <button
+            onClick={() => handleGenre("SCIENCE")}
+            className="bg-green-600 text-white px-4 py-2 rounded-lg"
+          >
+            Science
+          </button>
 
-              <p className="text-gray-600">
-                {book.author}
-              </p>
+          <button
+            onClick={() => handleGenre("HISTORY")}
+            className="bg-green-600 text-white px-4 py-2 rounded-lg"
+          >
+            History
+          </button>
 
-              <p className="mt-2 text-sm text-blue-600">
-                {book.genre}
-              </p>
+          <button
+            onClick={() => handleGenre("TECHNOLOGY")}
+            className="bg-green-600 text-white px-4 py-2 rounded-lg"
+          >
+            Technology
+          </button>
+        </div>
 
-              <p
-                className={`mt-2 font-semibold ${
-                  book.status === "AVAILABLE"
-                    ? "text-green-600"
-                    : "text-red-600"
-                }`}
-              >
-                {book.status}
-              </p>
+        {/* Books Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {books.map((book) => (
+            <div
+              key={book.book_Id}
+              className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition"
+            >
+              <img
+                src={
+                  book.imageUrl ||
+                  "https://via.placeholder.com/300x400?text=No+Image"
+                }
+                alt={book.title}
+                className="w-full h-64 object-cover"
+              />
 
-              {book.description && (
-                <p className="mt-3 text-sm text-gray-700">
-                  {book.description}
+              <div className="p-4">
+                <h2 className="font-bold text-xl text-gray-800">
+                  {book.title}
+                </h2>
+
+                <p className="text-gray-500">
+                  {book.author}
                 </p>
-              )}
-            </div>
-          </div>
-        ))}
 
-      </div>
+                <p className="text-blue-600 mt-2">
+                  {book.genre}
+                </p>
+
+                <p
+                  className={`mt-2 font-semibold ${
+                    book.status === "AVAILABLE"
+                      ? "text-green-600"
+                      : "text-red-600"
+                  }`}
+                >
+                  {book.status}
+                </p>
+
+                {book.description && (
+                  <p className="text-sm text-gray-600 mt-3 line-clamp-3">
+                    {book.description}
+                  </p>
+                )}
+
+                <button className="w-full mt-4 bg-indigo-600 hover:bg-indigo-700 text-white py-2 rounded-lg">
+                  View Details
+                </button>
+              </div>
+            </div>
+          ))}
+        </div>
+      </main>
     </div>
   );
 }
