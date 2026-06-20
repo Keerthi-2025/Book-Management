@@ -24,7 +24,7 @@ export default function ProfilePage() {
       </h1>
 
       {user && (
-        <div className="bg-white p-6 rounded-xl shadow w-96">
+        <div className="bg-white text-black p-6 rounded-xl shadow w-96">
 
           <p>
             <strong>Name:</strong> {user.userName}
