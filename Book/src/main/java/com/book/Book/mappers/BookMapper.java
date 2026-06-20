@@ -8,14 +8,15 @@ import com.book.Book.entities.Book;
 import org.springframework.stereotype.Component;
 
 @Component
-
 public class BookMapper {
-    public Book toBook(CreateBookDto dto){
+
+    public Book toBook(CreateBookDto dto) {
+
         return Book.builder()
-                .title(dto.title())
-                .author(dto.author())
-                .genre(dto.genre())
-                .imageUrl(dto.imageUrl())
+                .title(dto.getTitle())
+                .author(dto.getAuthor())
+                .genre(dto.getGenre())
+                .imageUrl(dto.getImageUrl())
                 .status(BookStatus.AVAILABLE)
                 .build();
     }
