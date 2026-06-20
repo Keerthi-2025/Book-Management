@@ -23,7 +23,7 @@ const getAllBooks = async () =>{
 }
 
 const addBook = async (formData) => {
-  try {
+  try { 
     const response = await axiosInstance.post(
       "/Book/v1/addBook",
       formData,
