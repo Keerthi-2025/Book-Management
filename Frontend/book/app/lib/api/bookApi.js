@@ -22,17 +22,24 @@ const getAllBooks = async () =>{
     }
 }
 
-const addBook = async (bookData) =>{
-    try {
-        const response = await axiosInstance.post("/Book/v1/addBook", bookData);
-        return response.data;
-        
-    } catch (error) {
-        console.log(error);
-        return null;
-        
-    }
-}
+const addBook = async (formData) => {
+  try {
+    const response = await axiosInstance.post(
+      "/Book/v1/addBook",
+      formData,
+      {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      }
+    );
+
+    return response.data;
+  } catch (error) {
+    console.log(error);
+    return null;
+  }
+};
 
 const deleteBook = async (bookId) =>{
     try {
