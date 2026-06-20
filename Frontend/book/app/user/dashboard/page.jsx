@@ -98,9 +98,10 @@ export default function UserDashboard() {
         {/* Books Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {books.map((book) => (
+            
             <div
               key={book.book_Id}
-              className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition"
+              className="bg-gray-200 rounded-xl shadow-md overflow-hidden hover:shadow-xl transition"
             >
               <img
                 src={
@@ -112,11 +113,11 @@ export default function UserDashboard() {
               />
 
               <div className="p-4">
-                <h2 className="font-bold text-xl text-gray-800">
+                <h2 className="font-bold text-xl text-black">
                   {book.title}
                 </h2>
 
-                <p className="text-gray-500">
+                <p className="text-black">
                   {book.author}
                 </p>
 
@@ -140,7 +141,7 @@ export default function UserDashboard() {
                   </p>
                 )}
 
-                <button className="w-full mt-4 bg-indigo-600 hover:bg-indigo-700 text-white py-2 rounded-lg">
+                <button className="w-full mt-4 bg-indigo-600 hover:bg-indigo-700 text-black py-2 rounded-lg">
                   View Details
                 </button>
               </div>
