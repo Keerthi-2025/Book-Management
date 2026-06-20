@@ -79,9 +79,11 @@ public class BookServiceImpl implements BookService {
             return "Book added successfully";
 
         } catch (Exception e) {
+            e.printStackTrace();
 
             throw new RuntimeException(e);
         }
+
     }
 
     @Override
