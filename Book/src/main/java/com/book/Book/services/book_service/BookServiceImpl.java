@@ -12,6 +12,10 @@ import com.book.Book.repositories.BookRepository;
 import com.book.Book.utils.UUIDUtil;
 import org.springframework.stereotype.Service;
 
+import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.UUID;
 
@@ -29,11 +33,55 @@ public class BookServiceImpl implements BookService {
         this.uuidUtil = uuidUtil;
     }
 
+
+//    public String addBook(CreateBookDto dto) {
+//        Book book = bookMapper.toBook(dto);
+//        bookRepository.save(book);
+//        return "Book added successfully";
+//    }
+
     @Override
     public String addBook(CreateBookDto dto) {
-        Book book = bookMapper.toBook(dto);
-        bookRepository.save(book);
-        return "Book added successfully";
+
+        try {
+
+            String uploadDir = "uploads/";
+
+            File dir = new File(uploadDir);
+
+            if (!dir.exists()) {
+                dir.mkdirs();
+            }
+
+            String fileName =
+                    UUID.randomUUID() +
+                            "_" +
+                            dto.getImage().getOriginalFilename();
+
+            Path path =
+                    Paths.get(uploadDir, fileName);
+
+            Files.copy(
+                    dto.getImage().getInputStream(),
+                    path
+            );
+
+            Book book = Book.builder()
+                    .title(dto.getTitle())
+                    .author(dto.getAuthor())
+                    .genre(dto.getGenre())
+                    .status(BookStatus.AVAILABLE)
+                    .imageUrl("/uploads/" + fileName)
+                    .build();
+
+            bookRepository.save(book);
+
+            return "Book added successfully";
+
+        } catch (Exception e) {
+
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
@@ -43,7 +91,7 @@ public class BookServiceImpl implements BookService {
         book.setTitle(dto.title());
         book.setAuthor(dto.author());
         book.setGenre(dto.genre());
-        book.setImageUrl(dto.imageUrl());
+//        book.setImageUrl(dto.imageUrl());
         bookRepository.save(book);
 
         return "Book updated successfully";
