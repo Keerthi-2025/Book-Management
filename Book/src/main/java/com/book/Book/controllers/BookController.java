@@ -22,7 +22,7 @@ public class BookController {
 
     //ADMIN
     @PostMapping("/v1/addBook")
-    public ResponseEntity<String>addBook(@RequestBody CreateBookDto dto){
+    public ResponseEntity<String>addBook(@ModelAttribute CreateBookDto dto){
         return ResponseEntity.status(201).body(bookService.addBook(dto));
     }
 
