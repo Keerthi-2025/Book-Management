@@ -230,7 +230,7 @@ export default function AdminBooks() {
   const [title, setTitle] = useState("");
   const [author, setAuthor] = useState("");
   const [genre, setGenre] = useState("TECHNOLOGY");
-  const [imageUrl, setImageUrl] = useState("");
+  const [image, setImage] = useState(null);
 
   useEffect(() => {
     fetchBooks();
@@ -249,20 +249,20 @@ export default function AdminBooks() {
       !title.trim() ||
       !author.trim() ||
       !genre ||
-      !imageUrl.trim()
+      !image
     ) {
       alert("Please fill all fields");
       return;
     }
 
-    const bookData = {
-      title,
-      author,
-      genre,
-      imageUrl,
-    };
+    const formData = new FormData();
 
-    const result = await addBook(bookData);
+    formData.append("title", title);
+    formData.append("author", author);
+    formData.append("genre", genre);
+    formData.append("image", image);
+
+    const result = await addBook(formData);
 
     if (result) {
       alert("Book Added Successfully");
@@ -270,7 +270,7 @@ export default function AdminBooks() {
       setTitle("");
       setAuthor("");
       setGenre("TECHNOLOGY");
-      setImageUrl("");
+      setImage(null);
 
       fetchBooks();
     } else {
@@ -354,12 +354,11 @@ export default function AdminBooks() {
           </select>
 
           <input
-            type="text"
-            placeholder="Image URL"
-            className="w-full border p-3 rounded mb-4 text-black"
-            value={imageUrl}
-            onChange={(e) => setImageUrl(e.target.value)}
-          />
+  type="file"
+  accept="image/*"
+  className="w-full border p-3 rounded mb-4 text-black"
+  onChange={(e) => setImage(e.target.files[0])}
+/>
 
           <button
             onClick={handleAddBook}
@@ -425,8 +424,9 @@ export default function AdminBooks() {
                     <td className="p-4">
                       <img
                         src={
-                          book.imageUrl ||
-                          "https://via.placeholder.com/80x100"
+                          book.imageUrl
+                            ? `http://localhost:8080${book.imageUrl}`
+                            : "https://via.placeholder.com/80x100"
                         }
                         alt={book.title}
                         className="w-16 h-20 object-cover rounded"
@@ -434,9 +434,7 @@ export default function AdminBooks() {
                     </td>
 
                     <td className="p-4">{book.title}</td>
-
                     <td className="p-4">{book.author}</td>
-
                     <td className="p-4">{book.genre}</td>
 
                     <td className="p-4">
