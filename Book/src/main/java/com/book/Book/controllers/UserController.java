@@ -7,7 +7,6 @@ import com.book.Book.Dto.Response.BookResponseDto;
 import com.book.Book.Dto.Response.CreateLoginResponseDto;
 import com.book.Book.Genre;
 import com.book.Book.Role;
-import com.book.Book.entities.Book;
 import com.book.Book.entities.User;
 import com.book.Book.services.book_service.BookService;
 import com.book.Book.services.user_service.UserService;
