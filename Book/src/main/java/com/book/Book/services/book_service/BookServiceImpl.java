@@ -88,9 +88,9 @@ public class BookServiceImpl implements BookService {
     public String updateBook(UUID book_Id, CreateBookDto dto) {
         Book book = bookRepository.findById(book_Id).orElseThrow(()-> new ApiRequestException("Book not found"));
 
-        book.setTitle(dto.title());
-        book.setAuthor(dto.author());
-        book.setGenre(dto.genre());
+        book.setTitle(dto.getTitle());
+        book.setAuthor(dto.getAuthor());
+        book.setGenre(dto.getGenre());
 //        book.setImageUrl(dto.imageUrl());
         bookRepository.save(book);
 

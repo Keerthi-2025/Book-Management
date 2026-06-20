@@ -38,5 +38,5 @@ public class Book {
     private BookStatus status;
 
     @Column
-    private MultipartFile imageUrl;
+    private String imageUrl;
 }

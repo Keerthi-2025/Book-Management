@@ -16,7 +16,6 @@ public class BookMapper {
                 .title(dto.getTitle())
                 .author(dto.getAuthor())
                 .genre(dto.getGenre())
-                .imageUrl(dto.getImageUrl())
                 .status(BookStatus.AVAILABLE)
                 .build();
     }
@@ -30,6 +29,7 @@ public class BookMapper {
                 book.getGenre(),
                 book.getStatus(),
                 book.getImageUrl()
+
         );
     }
 }

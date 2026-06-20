@@ -15,11 +15,11 @@ import org.springframework.web.multipart.MultipartFile;
 @Data
 public class CreateBookDto {
 
-    private String title;
+     public String title;
 
-    private String author;
+     String author;
 
-    private Genre genre;
+     Genre genre;
 
-    private MultipartFile image;
+     MultipartFile image;
 }
